@@ -43,6 +43,8 @@ HTML body:
 
 <script src="leaflet.js"></script>
 <script src="leaflet.markercluster.js"></script> <!-- any LayerGroup plugin -->
+
+<!-- add SubGroup script -->
 <script src="leaflet.featuregroup.subgroup-src.js"></script>
 ```
 
@@ -50,7 +52,9 @@ JavaScript:
 ```javascript
 var map = L.map("map"),
     parentGroup = L.markerClusterGroup(options),
-    mySubGroup = L.featureGroup.subGroup(parentGroup, arrayOfMarkers); // <= this is where the magic happens!
+    
+    // This is where the magic happens!
+    mySubGroup = L.featureGroup.subGroup(parentGroup, arrayOfMarkers);
     
 parentGroup.addTo(map);
 mySubGroup.addTo(map);
@@ -71,6 +75,7 @@ Simply use the `L.featureGroup.subGroup` factory instead of your regular `L.feat
 
 ```javascript
 var mySubGroup = L.featureGroup.subGroup(parentGroup);
+
 mySubGroup.addTo(map);
 ```
 
@@ -106,4 +111,4 @@ Make sure the sub-group and its child layers are removed from map before changin
 
 
 ## License
-Leaflet.FeatureGroup.SubGroup is licensed under [BSD 2-clause "Simplified"](http://choosealicense.com/licenses/bsd-2-clause/), like Leaflet.
+Leaflet.FeatureGroup.SubGroup is distributed under the [BSD 2-clause "Simplified" License](http://choosealicense.com/licenses/bsd-2-clause/), like Leaflet.

@@ -2,26 +2,18 @@
  * Leaflet.FeatureGroup.SubGroup creates a Feature Group that adds its child
  * layers into a parent group when added to a map (e.g. through L.Control.Layers).
  * (c) 2015 Boris Seang
- * License BSD 2-Clause (Simplified)
+ * BSD 2-Clause "Simplified" License
  */
 
 
-// Universal Module Definition
-// from https://github.com/umdjs/umd/blob/master/returnExportsGlobal.js
-// as recommended by https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md#module-loaders
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
 		define(['leaflet'], function (L) {
 			return (root.L.FeatureGroup.SubGroup = factory(L));
 		});
 	} else if (typeof module === 'object' && module.exports) {
-		// Node. Does not work with strict CommonJS, but
-		// only CommonJS-like environments that support module.exports,
-		// like Node.
 		module.exports = factory(require('leaflet'));
 	} else {
-		// Browser globals
 		root.L.FeatureGroup.SubGroup = factory(root.L);
 	}
 }(this, function (L) {
@@ -37,55 +29,82 @@
 			version: '0.1.0'
 		},
 
+		/**
+		 * Instantiates a SubGroup.
+		 * @param parentGroup (L.LayerGroup) (optional)
+		 * @param layersArray (L.Layer[]) (optional)
+		 */
 		initialize: function (parentGroup, layersArray) {
 			FGproto.initialize.call(this, layersArray);
 
 			this.setParentGroup(parentGroup);
 		},
 
+		/**
+		 * Changes the parent group into which child markers are added to /
+		 * removed from.
+		 * @param parentGroup (L.LayerGroup)
+		 * @returns {SubGroup} this
+		 */
 		setParentGroup: function (parentGroup) {
 			this._parentGroup = parentGroup;
 
 			// onAdd
 			this.onAdd =
-				(typeof parentGroup.addLayers === "function") ?
-					this._onAddToGroupBatch :
-				(parentGroup instanceof LG) ?
-					this._onAddToGroup :
+				parentGroup instanceof LG ?
+					(
+						typeof parentGroup.addLayers === "function" ?
+							this._onAddToGroupBatch :
+							this._onAddToGroup
+					) :
 					this._onAddToMap;
 
 			// onRemove
 			this.onRemove =
-				(typeof parentGroup.removeLayers === "function") ?
-					this._onRemoveFromGroupBatch :
-				(parentGroup instanceof LG) ?
-					this._onRemoveFromGroup :
+				parentGroup instanceof LG ?
+					(
+						typeof parentGroup.removeLayers === "function" ?
+							this._onRemoveFromGroupBatch :
+							this._onRemoveFromGroup
+					) :
 					this._onRemoveFromMap;
 
 			return this;
 		},
 
+		/**
+		 * Removes the current sub-group from map before changing the parent
+		 * group. Re-adds the sub-group to map if it was before changing.
+		 * @param parentGroup (L.LayerGroup)
+		 * @returns {SubGroup} this
+		 */
 		setParentGroupSafe: function (parentGroup) {
-			var map = this._map,
-				wasOnMap = !!map;
+			var map = this._map;
 
-			if (wasOnMap) {
+			if (map) {
 				map.removeLayer(this);
 			}
 
 			this.setParentGroup(parentGroup);
 
-			if (wasOnMap) {
+			if (map) {
 				map.addLayer(this);
 			}
 
 			return this;
 		},
 
+		/**
+		 * Returns the current parent group.
+		 * @returns {*}
+		 */
 		getParentGroup: function () {
 			return this._parentGroup;
 		},
 
+
+		// For parent groups with batch methods (addLayers and removeLayers)
+		// like MarkerCluster.
 		_onAddToGroupBatch: function (map) {
 			var layersArray = this.getLayers();
 
@@ -100,6 +119,8 @@
 			this._map = null;
 		},
 
+
+		// For other parent layer groups.
 		_onAddToGroup: function (map) {
 			var parentGroup = this._parentGroup;
 
@@ -114,6 +135,9 @@
 			this._map = null;
 		},
 
+
+		// Defaults to standard FeatureGroup behaviour when parent group is not
+		// specified or is not a type of LayerGroup.
 		_onAddToMap: FGproto.onAdd,
 		_onRemoveFromMap: FGproto.onRemove
 
