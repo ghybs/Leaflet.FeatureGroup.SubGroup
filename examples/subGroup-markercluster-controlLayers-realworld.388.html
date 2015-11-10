@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<title>Leaflet.FeatureGroup.SubGroup demo page (Layers Control and MarkerCluster)</title>
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="screen.css" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+	<!--
+	Current CDN version and GitHub dist version still have a bug when using removeLayer while MCG is not on map.
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+	Therefore we use the master rebuilt version below.
+	-->
+	<script src="leaflet.markercluster-src.js"></script>
+	<script src="../leaflet.featuregroup.subgroup-src.js"></script>
+	<script src="realworld.388.js"></script>
+
+</head>
+<body>
+
+<h1>Leaflet.FeatureGroup.SubGroup demo page</h1>
+
+<h2>
+	Compatibility with <a href="http://leafletjs.com/reference.html#control-layers" target="_blank">L.Control.Layers</a>
+	and <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">MarkerCluster</a>
+</h2>
+
+<div id="map"></div>
+<input id="add" type="button" value="Add MarkerClusterGroup to Map" />
+<input id="remove" type="button" value="Remove MarkerClusterGroup from Map" />
+<p>
+	Use the top right Layers Control to dynamically add / remove Layer Groups from the <b>map</b>.
+	Notice that child markers are actually added to / removed from the Marker Cluster Group!
+</p>
+<p>
+	This is the standard <a href="http://leafletjs.com/reference.html#control-layers" target="_blank">Leaflet Layers Control</a>.
+</p>
+<p>
+	Note: it is normal that the computed clusters depend on the order of insertion.
+	This is a result of Leaflet.markercluster algorithm.
+</p>
+<p>
+	This example is directly adapted from <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">Leaflet.markercluster</a>
+	<a href="http://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-realworld.388.html" target="_blank">demo page</a>.
+	The only difference is that markers are added to 4 different <code>subGroup</code>'s which are bound to the MarkerClusterGroup, instead of markers being directly added to the MCG.
+</p>
+
+<script type="application/javascript">
+
+	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
+		}),
+		latlng = L.latLng(-37.82, 175.24),
+		fullCount = addressPoints.length,
+		quarterCount = Math.round(fullCount / 4);
+
+
+	var map = L.map('map', {center: latlng, zoom: 13, layers: [tiles]});
+
+	var mcg = L.markerClusterGroup(),
+		group1 = L.featureGroup.subGroup(mcg),// use `L.featureGroup.subGroup(parentGroup)` instead of `L.featureGroup()` or `L.layerGroup()`!
+		group2 = L.featureGroup.subGroup(mcg),
+		group3 = L.featureGroup.subGroup(mcg),
+		group4 = L.featureGroup.subGroup(mcg),
+		control = L.control.layers(null, null, { collapsed: false }),
+		i, a, title, marker;
+
+	mcg.addTo(map);
+
+	for (i = 0; i < fullCount; i++) {
+		a = addressPoints[i];
+		title = a[2];
+		marker = L.marker([a[0], a[1]], { title: title });
+		marker.bindPopup(title);
+
+		marker.addTo(i < quarterCount ? group1 : i < quarterCount * 2 ? group2 : i < quarterCount * 3 ? group3 : group4);
+	}
+
+	control.addOverlay(group1, 'First quarter');
+	control.addOverlay(group2, 'Second quarter');
+	control.addOverlay(group3, 'Third quarter');
+	control.addOverlay(group4, 'Fourth quarter');
+	control.addTo(map);
+
+	group1.addTo(map); // Adding to map now adds all child layers into the parent group.
+	group2.addTo(map);
+	group3.addTo(map);
+	group4.addTo(map);
+
+
+	// Set-up buttons.
+
+	document.getElementById("add").addEventListener("click", function () {
+		map.addLayer(mcg);
+	});
+
+	document.getElementById("remove").addEventListener("click", function () {
+		map.removeLayer(mcg);
+	});
+
+</script>
+
+</body>
+</html>
