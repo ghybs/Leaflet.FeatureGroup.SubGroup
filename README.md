@@ -1,8 +1,9 @@
 # Leaflet.FeatureGroup.SubGroup
-Creates a Feature Group that adds its child layers into a parent group when
-added to a map (e.g. through L.Control.Layers).
+Creates a Leaflet Feature Group that adds its child layers into a parent group
+when added to a map (e.g. through L.Control.Layers).
 
-Typical usage is to dynamically add/remove groups of markers from MarkerCluster.
+**Typical usage is to dynamically add/remove groups of markers from
+[Marker Cluster](https://github.com/Leaflet/Leaflet.markercluster).**
 
 [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin
 provides beautiful animated Marker Clustering functionality.
