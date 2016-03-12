@@ -25,6 +25,8 @@
 <div id="map"></div>
 <input id="add" type="button" value="Add parent group to Map" />
 <input id="remove" type="button" value="Remove parent group from Map" />
+<input id="addMarker" type="button" value="Add marker to Child A sub-group" />
+<input id="removeMarker" type="button" value="Remove marker from Child A sub-group" />
 <p>
 	Use the top right Layers Control to dynamically add / remove Groups from the <b>map</b>.
 </p>
@@ -64,7 +66,7 @@
 
 	parent.addTo(map);
 
-	L.marker([-37.8, 175.2]).addTo(groupA).bindPopup("Marker at [-37.8, 175.2] in group A");
+	var marker = L.marker([-37.8, 175.2]).addTo(groupA).bindPopup("Marker at [-37.8, 175.2] in group A");
 	L.marker([-37.8, 175.3]).addTo(groupB).bindPopup("Marker at [-37.8, 175.3] in group B");
 	L.marker([-37.9, 175.2]).addTo(groupC).bindPopup("Marker at [-37.9, 175.2] in group C");
 	L.marker([-37.9, 175.3]).addTo(groupD).bindPopup("Marker at [-37.9, 175.3] in group D");
@@ -90,6 +92,14 @@
 
 	document.getElementById("remove").addEventListener("click", function () {
 		map.removeLayer(parent);
+	});
+
+	document.getElementById("addMarker").addEventListener("click", function () {
+		groupA.addLayer(marker);
+	});
+
+	document.getElementById("removeMarker").addEventListener("click", function () {
+		groupA.removeLayer(marker);
 	});
 
 </script>

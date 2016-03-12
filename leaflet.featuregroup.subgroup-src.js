@@ -20,7 +20,8 @@
 
     var FG = L.FeatureGroup,
         FGproto = FG.prototype,
-        LG = L.LayerGroup;
+        LG = L.LayerGroup,
+        EVENTS = FG.EVENTS;
 
 
     var SubGroup = FG.extend({
@@ -47,11 +48,13 @@
          * @returns {SubGroup} this
          */
         setParentGroup: function (parentGroup) {
+            var pgInstanceOfLG = parentGroup instanceof LG;
+
             this._parentGroup = parentGroup;
 
             // onAdd
             this.onAdd =
-                parentGroup instanceof LG ?
+                pgInstanceOfLG ?
                     (
                         typeof parentGroup.addLayers === "function" ?
                             this._onAddToGroupBatch :
@@ -61,13 +64,23 @@
 
             // onRemove
             this.onRemove =
-                parentGroup instanceof LG ?
+                pgInstanceOfLG ?
                     (
                         typeof parentGroup.removeLayers === "function" ?
                             this._onRemoveFromGroupBatch :
                             this._onRemoveFromGroup
                     ) :
                     this._onRemoveFromMap;
+
+            // addLayer
+            this.addLayer = pgInstanceOfLG ?
+                this._addLayerToGroup :
+                this._addLayerToMap;
+
+            // removeLayer
+            this.removeLayer = pgInstanceOfLG ?
+                this._removeLayerFromGroup :
+                this._removeLayerFromMap;
 
             return this;
         },
@@ -112,7 +125,7 @@
             this._parentGroup.addLayers(layersArray);
         },
 
-        _onRemoveFromGroupBatch: function (map) {
+        _onRemoveFromGroupBatch: function () {
             var layersArray = this.getLayers();
 
             this._parentGroup.removeLayers(layersArray);
@@ -128,7 +141,7 @@
             this.eachLayer(parentGroup.addLayer, parentGroup);
         },
 
-        _onRemoveFromGroup: function (map) {
+        _onRemoveFromGroup: function () {
             var parentGroup = this._parentGroup;
 
             this.eachLayer(parentGroup.removeLayer, parentGroup);
@@ -139,7 +152,66 @@
         // Defaults to standard FeatureGroup behaviour when parent group is not
         // specified or is not a type of LayerGroup.
         _onAddToMap: FGproto.onAdd,
-        _onRemoveFromMap: FGproto.onRemove
+        _onRemoveFromMap: FGproto.onRemove,
+
+
+        _addLayerToGroup: function (layer) {
+            if (this.hasLayer(layer)) {
+                return this;
+            }
+
+            if (layer.on) {
+                layer.on(EVENTS, this._propagateEvent, this);
+            }
+
+            var id = this.getLayerId(layer);
+
+            this._layers[id] = layer;
+
+            if (this._map) {
+                // Add to parent group instead of directly to map.
+                this._parentGroup.addLayer(layer);
+            }
+
+            if (this._popupContent && layer.bindPopup) {
+                layer.bindPopup(this._popupContent, this._popupOptions);
+            }
+
+            return this.fire('layeradd', {layer: layer});
+        },
+
+        _removeLayerFromGroup: function (layer) {
+            if (!this.hasLayer(layer)) {
+                return this;
+            }
+            if (layer in this._layers) {
+                layer = this._layers[layer];
+            }
+
+            if (layer.off) {
+                layer.off(EVENTS, this._propagateEvent, this);
+            }
+
+            var id = layer in this._layers ? layer : this.getLayerId(layer);
+
+            if (this._map && this._layers[id]) {
+                // Remove from parent group instead of directly from map.
+                this._parentGroup.removeLayer(id);
+            }
+
+            delete this._layers[id];
+
+            if (this._popupContent) {
+                this.invoke('unbindPopup');
+            }
+
+            return this.fire('layerremove', {layer: layer});
+        },
+
+        // Defaults to standard FeatureGroup behaviour when parent group is not
+        // specified or is not a type of LayerGroup.
+        _addLayerToMap: FGproto.addLayer,
+        _removeLayerFromMap: FGproto.removeLayer
 
     });
 
