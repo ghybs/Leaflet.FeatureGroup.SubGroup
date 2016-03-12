@@ -65,7 +65,7 @@ Leaflet script.
 You can alternatively use the free [RawGit](https://rawgit.com/) CDN service, but keep in mind that there are [no uptime or support guarantees](https://rawgit.com/faq#no-uptime-guarantee).
 
 ```html
-<!-- After Leaflet and Leaflet.markercluster scripts -->
+<!-- After Leaflet script -->
 <script src="https://cdn.rawgit.com/ghybs/Leaflet.FeatureGroup.SubGroup/43fc6b39fa31018490c7ce52d24e760d903ed879/leaflet.featuregroup.subgroup-src.js"></script>
 ```
 
