@@ -36,7 +36,7 @@ Current SubGroup version: 0.1.0
 <script src="leaflet.featuregroup.subgroup-src.js"></script>
 ```
 
-JavaScript:
+**JavaScript:**
 ```javascript
 var map = L.map("map"),
     parentGroup = L.markerClusterGroup(options), // Could be any other Layer Group type.
