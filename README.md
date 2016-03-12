@@ -30,30 +30,16 @@ Current SubGroup version: 0.1.0
 ## Usage instructions
 
 ### Quick Guide
-HTML head:
+**HTML:**
 ```html
-<link rel="stylesheet" href="leaflet.css" />
-
-<!-- any plugin related CSS -->
-<link rel="stylesheet" href="MarkerCluster.css" />
-<link rel="stylesheet" href="MarkerCluster.Default.css" />
-```
-
-HTML body:
-```html
-<div id="map" style="width: 800px; height: 600px;"></div>
-
-<script src="leaflet.js"></script>
-<script src="leaflet.markercluster.js"></script> <!-- any LayerGroup plugin -->
-
-<!-- add SubGroup script -->
+<!-- after Leaflet script -->
 <script src="leaflet.featuregroup.subgroup-src.js"></script>
 ```
 
 JavaScript:
 ```javascript
 var map = L.map("map"),
-    parentGroup = L.markerClusterGroup(options),
+    parentGroup = L.markerClusterGroup(options), // Could be any other Layer Group type.
     
     // This is where the magic happens!
     mySubGroup = L.featureGroup.subGroup(parentGroup, arrayOfMarkers);
@@ -68,8 +54,20 @@ It should virtually be compatible with any LayerGroup plugin, not only MarkerClu
 
 
 ### Installing the sub-plugin
-Simply add the "leaflet.featuregroup.subgroup-src.js" script file to your page after
-Leaflet and Leaflet.markercluster scripts (or any LayerGroup plugin script).
+
+#### Local copy
+1. <a class="test" href="https://raw.githubusercontent.com/ghybs/Leaflet.FeatureGroup.SubGroup/master/leaflet.featuregroup.subgroup-src.js" download="leaflet.featuregroup.subgroup-src.js" target="_blank">Download</a> the "leaflet.featuregroup.subgroup-src.js" file (right click on the link and "Save Link As…").
+2. Place the file alongside your page.
+3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after
+Leaflet script.
+
+#### CDN
+You can alternatively use the free [RawGit](https://rawgit.com/) CDN service, but keep in mind that there are [no uptime or support guarantees](https://rawgit.com/faq#no-uptime-guarantee).
+
+```html
+<!-- After Leaflet and Leaflet.markercluster scripts -->
+<script src="https://cdn.rawgit.com/ghybs/Leaflet.FeatureGroup.SubGroup/36dce609b005cbaa488476f7ab28ab8b178139e9/leaflet.featuregroup.subgroup-src.js"></script>
+```
 
 
 ### Creation
