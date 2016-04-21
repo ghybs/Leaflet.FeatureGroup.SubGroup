@@ -12,6 +12,9 @@ provides beautiful animated Marker Clustering functionality.
 for mobile-friendly interactive maps.
 
 Current SubGroup version: 0.1.1
+Requires Leaflet 0.7.x.
+
+For Leaflet 1.0 use the [master branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/master)
 
 
 
@@ -40,10 +43,10 @@ Current SubGroup version: 0.1.1
 ```javascript
 var map = L.map("map"),
     parentGroup = L.markerClusterGroup(options), // Could be any other Layer Group type.
-    
+
     // This is where the magic happens!
     mySubGroup = L.featureGroup.subGroup(parentGroup, arrayOfMarkers);
-    
+
 parentGroup.addTo(map);
 mySubGroup.addTo(map);
 ```
