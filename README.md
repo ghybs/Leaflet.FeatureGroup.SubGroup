@@ -12,15 +12,16 @@ provides beautiful animated Marker Clustering functionality.
 for mobile-friendly interactive maps.
 
 Current SubGroup version: 0.1.1
-Requires Leaflet 0.7.x.
 
-For Leaflet 1.0 use the [master branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/master)
 
 
 
 ## Requirements
-- Leaflet stable (0.7.x)
-- Leaflet.markercluster stable (0.4.x)
+*Requires Leaflet stable (0.7.x)*
+
+*For Leaflet 1.0 use the [master branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/master)*
+
+*Optional: Leaflet.markercluster stable (0.4.x)*
 
 
 
