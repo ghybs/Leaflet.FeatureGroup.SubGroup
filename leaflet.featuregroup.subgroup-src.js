@@ -20,8 +20,7 @@
 
     var FG = L.FeatureGroup,
         FGproto = FG.prototype,
-        LG = L.LayerGroup,
-        EVENTS = FG.EVENTS;
+        LG = L.LayerGroup;
 
 
     var SubGroup = FG.extend({
@@ -160,9 +159,7 @@
                 return this;
             }
 
-            if (layer.on) {
-                layer.on(EVENTS, this._propagateEvent, this);
-            }
+            layer.addEventParent(this);
 
             var id = this.getLayerId(layer);
 
@@ -171,10 +168,6 @@
             if (this._map) {
                 // Add to parent group instead of directly to map.
                 this._parentGroup.addLayer(layer);
-            }
-
-            if (this._popupContent && layer.bindPopup) {
-                layer.bindPopup(this._popupContent, this._popupOptions);
             }
 
             return this.fire('layeradd', {layer: layer});
@@ -188,9 +181,7 @@
                 layer = this._layers[layer];
             }
 
-            if (layer.off) {
-                layer.off(EVENTS, this._propagateEvent, this);
-            }
+						layer.removeEventParent(this);
 
             var id = layer in this._layers ? layer : this.getLayerId(layer);
 
@@ -200,10 +191,6 @@
             }
 
             delete this._layers[id];
-
-            if (this._popupContent) {
-                this.invoke('unbindPopup');
-            }
 
             return this.fire('layerremove', {layer: layer});
         },
