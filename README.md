@@ -16,8 +16,11 @@ Current SubGroup version: 0.1.1
 
 
 ## Requirements
-- Leaflet stable (0.7.x)
-- Leaflet.markercluster stable (0.4.x)
+*Requires Leaflet 1.0.0-beta2*
+
+*For Leaflet 0.7 use the [leaflet-0.7 branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/leaflet-0.7)*
+
+*Optional: Leaflet.markercluster dev
 
 
 
@@ -40,10 +43,10 @@ Current SubGroup version: 0.1.1
 ```javascript
 var map = L.map("map"),
     parentGroup = L.markerClusterGroup(options), // Could be any other Layer Group type.
-    
+
     // This is where the magic happens!
     mySubGroup = L.featureGroup.subGroup(parentGroup, arrayOfMarkers);
-    
+
 parentGroup.addTo(map);
 mySubGroup.addTo(map);
 ```
