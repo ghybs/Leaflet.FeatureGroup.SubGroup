@@ -2,12 +2,13 @@
   "name": "leaflet.featuregroup.subgroup",
   "version": "1.0.0",
   "description": "Creates a Leaflet Feature Group that adds its child layers into a parent group when added to a map",
-  "main": "leaflet.featuregroup.subgroup-src.js",
+  "main": "dist/leaflet.featuregroup.subgroup.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "build": "jake build"
+    "build": "jake build",
+    "prepublish": "jake"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,6 @@
     "uglify-js": "^2.6.2"
   },
   "peerDependencies": {
-    "leaflet": "~1.0.0-beta.2"
+    "leaflet": "~1.0.0-rc.1"
   }
 }
