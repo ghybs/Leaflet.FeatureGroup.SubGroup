@@ -21,7 +21,7 @@ Current SubGroup version: 0.1.1
 
 *For Leaflet 1.0 use the [master branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/master)*
 
-*Optional: Leaflet.markercluster stable (0.4.x)*
+*Optional: [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin for Leaflet 0.7.x (0.x)*
 
 
 
