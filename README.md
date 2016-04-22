@@ -21,7 +21,7 @@ Current SubGroup version: 0.1.1
 
 *For Leaflet 1.0 use the [master branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/master)*
 
-*Optional: [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin for Leaflet 0.7.x (0.x)*
+*Optional: [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin for Leaflet 0.7.x (i.e. Leaflet.markercluster branch `leaflet-0.7` / version 0.x)*
 
 
 
@@ -60,17 +60,16 @@ It should virtually be compatible with any LayerGroup plugin, not only MarkerClu
 ### Installing the sub-plugin
 
 #### Local copy
-1. <a class="test" href="https://raw.githubusercontent.com/ghybs/Leaflet.FeatureGroup.SubGroup/master/leaflet.featuregroup.subgroup-src.js" download="leaflet.featuregroup.subgroup-src.js" target="_blank">Download</a> the "leaflet.featuregroup.subgroup-src.js" file (right click on the link and "Save Link As…").
+1. <a class="test" href="https://raw.githubusercontent.com/ghybs/Leaflet.FeatureGroup.SubGroup/v0.1.1/leaflet.featuregroup.subgroup-src.js" download="leaflet.featuregroup.subgroup-src.js" target="_blank">Download</a> the "leaflet.featuregroup.subgroup-src.js" file (right click on the link and "Save Link As…").
 2. Place the file alongside your page.
-3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after
-Leaflet script.
+3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after Leaflet script.
 
 #### CDN
 You can alternatively use the free [RawGit](https://rawgit.com/) CDN service, but keep in mind that there are [no uptime or support guarantees](https://rawgit.com/faq#no-uptime-guarantee).
 
 ```html
 <!-- After Leaflet script -->
-<script src="https://cdn.rawgit.com/ghybs/Leaflet.FeatureGroup.SubGroup/43fc6b39fa31018490c7ce52d24e760d903ed879/leaflet.featuregroup.subgroup-src.js"></script>
+<script src="https://cdn.rawgit.com/ghybs/Leaflet.FeatureGroup.SubGroup/v0.1.1/leaflet.featuregroup.subgroup-src.js"></script>
 ```
 
 
