@@ -11,7 +11,7 @@ provides beautiful animated Marker Clustering functionality.
 [Leaflet](http://leafletjs.com/) is the leading open-source JavaScript library
 for mobile-friendly interactive maps.
 
-Current SubGroup version: [v1.0.0](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/v1.0.0)
+Latest SubGroup release: [v1.0.0](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v1.0.0)
 
 Size: 2 kB minified, < 1 kB gzipped.
 
@@ -61,7 +61,7 @@ It should virtually be compatible with any LayerGroup plugin, not only MarkerClu
 ### Installing the sub-plugin
 
 #### Local copy
-1. <a href="https://raw.githubusercontent.com/ghybs/Leaflet.FeatureGroup.SubGroup/v1.0.0/dist/leaflet.featuregroup.subgroup.js" download="leaflet.featuregroup.subgroup.js" target="_blank">Download</a> the "leaflet.featuregroup.subgroup.js" file (right click on the link and "Save Link As…") from `v1.0.0` tag.
+1. Download the "<a href="https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/download/v1.0.0/leaflet.featuregroup.subgroup.js" download="leaflet.featuregroup.subgroup.js">`leaflet.featuregroup.subgroup.js`</a>" file from [`v1.0.0` release](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v1.0.0).
 2. Place the file alongside your page.
 3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after Leaflet script.
 
