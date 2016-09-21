@@ -3,7 +3,7 @@ var FG = L.FeatureGroup,
     LG = L.LayerGroup;
 
 
-var SubGroup = FG.extend({
+var Plugin = FG.SubGroup = FG.extend({
 
     statics: {
         version: "1.0.0"
@@ -24,7 +24,7 @@ var SubGroup = FG.extend({
      * Changes the parent group into which child markers are added to /
      * removed from.
      * @param parentGroup (L.LayerGroup)
-     * @returns {SubGroup} this
+     * @returns {Plugin} this
      */
     setParentGroup: function (parentGroup) {
         var pgInstanceOfLG = parentGroup instanceof LG;
@@ -68,7 +68,7 @@ var SubGroup = FG.extend({
      * Removes the current sub-group from map before changing the parent
      * group. Re-adds the sub-group to map if it was before changing.
      * @param parentGroup (L.LayerGroup)
-     * @returns {SubGroup} this
+     * @returns {Plugin} this
      */
     setParentGroupSafe: function (parentGroup) {
         var map = this._map;
