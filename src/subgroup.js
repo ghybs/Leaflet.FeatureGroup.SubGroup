@@ -1,9 +1,4 @@
-var FG = L.FeatureGroup,
-    FGproto = FG.prototype,
-    LG = L.LayerGroup;
-
-
-var Plugin = FG.SubGroup = FG.extend({
+var Plugin = L.FeatureGroup.SubGroup = L.FeatureGroup.extend({
 
     statics: {
         version: "1.0.0"
@@ -15,7 +10,7 @@ var Plugin = FG.SubGroup = FG.extend({
      * @param layersArray (L.Layer[]) (optional)
      */
     initialize: function (parentGroup, layersArray) {
-        FGproto.initialize.call(this, layersArray);
+        L.FeatureGroup.prototype.initialize.call(this, layersArray);
 
         this.setParentGroup(parentGroup);
     },
@@ -27,7 +22,7 @@ var Plugin = FG.SubGroup = FG.extend({
      * @returns {Plugin} this
      */
     setParentGroup: function (parentGroup) {
-        var pgInstanceOfLG = parentGroup instanceof LG;
+        var pgInstanceOfLG = parentGroup instanceof L.LayerGroup;
 
         this._parentGroup = parentGroup;
 
@@ -130,8 +125,8 @@ var Plugin = FG.SubGroup = FG.extend({
 
     // Defaults to standard FeatureGroup behaviour when parent group is not
     // specified or is not a type of LayerGroup.
-    _onAddToMap: FGproto.onAdd,
-    _onRemoveFromMap: FGproto.onRemove,
+    _onAddToMap: L.FeatureGroup.prototype.onAdd,
+    _onRemoveFromMap: L.FeatureGroup.prototype.onRemove,
 
 
     _addLayerToGroup: function (layer) {
@@ -177,8 +172,8 @@ var Plugin = FG.SubGroup = FG.extend({
 
     // Defaults to standard FeatureGroup behaviour when parent group is not
     // specified or is not a type of LayerGroup.
-    _addLayerToMap: FGproto.addLayer,
-    _removeLayerFromMap: FGproto.removeLayer
+    _addLayerToMap: L.FeatureGroup.prototype.addLayer,
+    _removeLayerFromMap: L.FeatureGroup.prototype.removeLayer
 
 });
 
@@ -186,5 +181,5 @@ var Plugin = FG.SubGroup = FG.extend({
 
 // Supply with a factory for consistency with Leaflet.
 L.featureGroup.subGroup = function (parentGroup, options) {
-    return new FG.SubGroup(parentGroup, options);
+    return new L.FeatureGroup.SubGroup(parentGroup, options);
 };
