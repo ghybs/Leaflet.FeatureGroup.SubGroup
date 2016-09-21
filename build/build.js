@@ -56,14 +56,24 @@ function bytesToKB(bytes) {
     return (bytes / 1024).toFixed(2) + " kB";
 }
 
-exports.build = function (callback, version, copyrightYear, compsBase32, buildName) {
+function fillContentWithMetaData(content, metaData) {
+    return content.
+        replace("{VERSION}", metaData.version).
+        replace("{YEAR}", metaData["_year"]).
+        replace("{AUTHOR}", metaData.author).
+        replace("{LICENSE}", metaData.license).
+        replace("{NAME}", metaData["_name"]).
+        replace("{DESCRIPTION}", metaData.description);
+}
+
+exports.build = function (callback, metaData, compsBase32, buildName) {
 
     var files = getFiles(compsBase32);
 
     console.log("Bundling and minifying " + files.length + " file(s)...");
 
-    var copyrightSrc = fs.readFileSync("build/copyright-src.js", "utf8").replace("{VERSION}", version).replace("{YEAR}", copyrightYear),
-        copyrightMin = fs.readFileSync("build/copyright.js", "utf8").replace("{VERSION}", version).replace("{YEAR}", copyrightYear),
+    var copyrightSrc = fillContentWithMetaData(fs.readFileSync("build/copyright-src.js", "utf8"), metaData),
+        copyrightMin = fillContentWithMetaData(fs.readFileSync("build/copyright.js", "utf8"), metaData),
 
         filenamePart = "leaflet.featuregroup.subgroup" + (buildName ? "-" + buildName : ""),
         pathPart = "dist/",

@@ -1,6 +1,8 @@
 {
   "name": "leaflet.featuregroup.subgroup",
-  "version": "1.0.0",
+  "_name": "Leaflet.FeatureGroup.SubGroup",
+  "version": "1.0.1",
+  "_year": "2015-2016",
   "description": "Creates a Leaflet Feature Group that adds its child layers into a parent group when added to a map",
   "main": "dist/leaflet.featuregroup.subgroup.js",
   "directories": {
@@ -28,6 +30,7 @@
   },
   "homepage": "https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup#readme",
   "devDependencies": {
+    "git-rev": "^0.2.1",
     "magic-string": "^0.11.4",
     "uglify-js": "^2.6.2"
   },

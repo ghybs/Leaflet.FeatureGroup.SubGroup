@@ -8,20 +8,30 @@
  */
 
 var build = require("./build/build.js"),
-    copyrightData = require("./build/copyright-data.js"),
-    version = copyrightData.version;
+    git = require('git-rev');
+
+
+// Returns the version string in package.json, plus a semver build metadata if
+// this is not an official release
+function calculateVersion(officialRelease, callback) {
+
+    var packageJsonData = require('./package.json'),
+        version = packageJsonData.version;
+
+    if (officialRelease) {
+        callback(packageJsonData);
+    } else {
+        git.short(function(str) {
+            packageJsonData.version = version + '+' + str;
+            callback (packageJsonData);
+        });
+    }
+}
 
 desc("Combine and minify source files");
-task("build", {async: true}, function (compsBase32, buildName) {
-    var v;
-
-    jake.exec('git log -1 --pretty=format:"%h"', {breakOnError: false}, function () {
-        build.build(complete, v, copyrightData.year, compsBase32, buildName);
-
-    }).on("stdout", function (data) {
-        v = version + " (" + data.toString() + ")";
-    }).on("error", function () {
-        v = version;
+task('build', {async: true}, function (compsBase32, buildName, officialRelease) {
+    calculateVersion(officialRelease, function(metaData){
+        build.build(complete, metaData, compsBase32, buildName);
     });
 });
 
