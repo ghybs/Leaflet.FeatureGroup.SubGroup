@@ -1,5 +1,5 @@
 examples/
-dist/leaflet.featuregroup.subgroup-src.map
+*.map
 build/
 src/
 .gitignore
