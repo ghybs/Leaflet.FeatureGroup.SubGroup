@@ -1,0 +1,6 @@
+examples/
+dist/leaflet.featuregroup.subgroup-src.map
+build/
+src/
+.gitignore
+Jakefile.js
