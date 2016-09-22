@@ -70,7 +70,7 @@ You can alternatively use the free [UNPKG](https://unpkg.com) CDN service, but k
 
 ```html
 <!-- After Leaflet script -->
-<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.1/leaflet.featuregroup.subgroup.js"></script>
+<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.1/dist/leaflet.featuregroup.subgroup.js"></script>
 ```
 
 
