@@ -11,7 +11,7 @@ provides beautiful animated Marker Clustering functionality.
 [Leaflet](http://leafletjs.com/) is the leading open-source JavaScript library
 for mobile-friendly interactive maps.
 
-Current SubGroup version: 0.1.1
+Current SubGroup version: 0.1.2
 
 
 
