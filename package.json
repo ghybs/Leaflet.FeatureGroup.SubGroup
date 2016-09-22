@@ -2,8 +2,11 @@
   "name": "leaflet.featuregroup.subgroup",
   "version": "0.1.2",
   "description": "Creates a Leaflet Feature Group that adds its child layers into a parent group when added to a map",
-  "main": "leaflet.featuregroup.subgroup-src.js",
-  "files": ["leaflet.featuregroup.subgroup-src.js"],
+  "main": "leaflet.featuregroup.subgroup.js",
+  "files": [
+    "leaflet.featuregroup.subgroup-src.js",
+    "leaflet.featuregroup.subgroup.js"
+  ],
   "directories": {
     "example": "examples"
   },
