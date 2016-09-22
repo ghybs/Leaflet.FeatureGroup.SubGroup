@@ -5,26 +5,17 @@
  * BSD 2-Clause "Simplified" License
  */
 
-
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['leaflet'], function (L) {
-            return (root.L.FeatureGroup.SubGroup = factory(L));
-        });
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory(require('leaflet'));
+    if (typeof define === "function" && define.amd) {
+        define(["leaflet"], factory);
+    } else if (typeof module === "object" && module.exports) {
+        factory(require("leaflet"));
     } else {
-        root.L.FeatureGroup.SubGroup = factory(root.L);
+        factory(root.L);
     }
 }(this, function (L) {
 
-    var FG = L.FeatureGroup,
-        FGproto = FG.prototype,
-        LG = L.LayerGroup,
-        EVENTS = FG.EVENTS;
-
-
-    var SubGroup = FG.extend({
+    L.FeatureGroup.SubGroup = L.FeatureGroup.extend({
 
         statics: {
             version: '0.1.1'
@@ -36,7 +27,7 @@
          * @param layersArray (L.Layer[]) (optional)
          */
         initialize: function (parentGroup, layersArray) {
-            FGproto.initialize.call(this, layersArray);
+            L.FeatureGroup.prototype.initialize.call(this, layersArray);
 
             this.setParentGroup(parentGroup);
         },
@@ -48,7 +39,7 @@
          * @returns {SubGroup} this
          */
         setParentGroup: function (parentGroup) {
-            var pgInstanceOfLG = parentGroup instanceof LG;
+            var pgInstanceOfLG = parentGroup instanceof L.LayerGroup;
 
             this._parentGroup = parentGroup;
 
@@ -151,8 +142,8 @@
 
         // Defaults to standard FeatureGroup behaviour when parent group is not
         // specified or is not a type of LayerGroup.
-        _onAddToMap: FGproto.onAdd,
-        _onRemoveFromMap: FGproto.onRemove,
+        _onAddToMap: L.FeatureGroup.prototype.onAdd,
+        _onRemoveFromMap: L.FeatureGroup.prototype.onRemove,
 
 
         _addLayerToGroup: function (layer) {
@@ -161,7 +152,7 @@
             }
 
             if (layer.on) {
-                layer.on(EVENTS, this._propagateEvent, this);
+                layer.on(L.FeatureGroup.EVENTS, this._propagateEvent, this);
             }
 
             var id = this.getLayerId(layer);
@@ -189,7 +180,7 @@
             }
 
             if (layer.off) {
-                layer.off(EVENTS, this._propagateEvent, this);
+                layer.off(L.FeatureGroup.EVENTS, this._propagateEvent, this);
             }
 
             var id = layer in this._layers ? layer : this.getLayerId(layer);
@@ -210,8 +201,8 @@
 
         // Defaults to standard FeatureGroup behaviour when parent group is not
         // specified or is not a type of LayerGroup.
-        _addLayerToMap: FGproto.addLayer,
-        _removeLayerFromMap: FGproto.removeLayer
+        _addLayerToMap: L.FeatureGroup.prototype.addLayer,
+        _removeLayerFromMap: L.FeatureGroup.prototype.removeLayer
 
     });
 
@@ -219,9 +210,7 @@
 
     // Supply with a factory for consistency with Leaflet.
     L.featureGroup.subGroup = function (parentGroup, options) {
-        return new FG.SubGroup(parentGroup, options);
+        return new L.FeatureGroup.SubGroup(parentGroup, options);
     };
 
-    // Just return a value to define the module export.
-    return SubGroup;
 }));
