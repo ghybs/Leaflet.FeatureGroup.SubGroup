@@ -10,10 +10,7 @@
   "directories": {
     "example": "examples"
   },
-  "scripts": {
-    "build": "jake build",
-    "prepublish": "jake"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup.git"
