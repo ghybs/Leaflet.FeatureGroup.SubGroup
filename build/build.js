@@ -88,6 +88,13 @@ exports.build = function (callback, metaData, compsBase32, buildName) {
         oldSrc = loadSilently(srcPath),
         srcDelta = getSizeDelta(newSrc, oldSrc, true);
 
+    // Make sure the dist/ folder exists.
+    try {
+        fs.accessSync(pathPart, fs.F_OK);
+    } catch (err) {
+        fs.mkdirSync(pathPart);
+    }
+
     pathPart += filenamePart;
 
     console.log("\tNon-minified: " + bytesToKB(newSrc.length) + srcDelta);
