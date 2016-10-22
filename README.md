@@ -11,7 +11,13 @@ provides beautiful animated Marker Clustering functionality.
 [Leaflet](http://leafletjs.com/) is the leading open-source JavaScript library
 for mobile-friendly interactive maps.
 
-Latest SubGroup release: [v1.0.1](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v1.0.1)
+GitHub:
+[![releases](https://img.shields.io/github/release/ghybs/leaflet.featuregroup.subgroup.svg)](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases)
+![downloads](https://img.shields.io/github/downloads/ghybs/leaflet.featuregroup.subgroup/total.svg)
+
+npm:
+[![npm](https://img.shields.io/npm/v/leaflet.featuregroup.subgroup.svg)](https://www.npmjs.com/package/leaflet.featuregroup.subgroup)
+![downloads](https://img.shields.io/npm/dt/leaflet.featuregroup.subgroup.svg)
 
 Size: 2 kB minified, < 1 kB gzipped.
 
@@ -115,4 +121,5 @@ Make sure the sub-group and its child layers are removed from map before changin
 
 
 ## License
+[![license](https://img.shields.io/github/license/ghybs/leaflet.featuregroup.subgroup.svg)](LICENSE)
 Leaflet.FeatureGroup.SubGroup is distributed under the [BSD 2-clause "Simplified" License](http://choosealicense.com/licenses/bsd-2-clause/), like Leaflet.
