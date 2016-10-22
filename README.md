@@ -122,4 +122,5 @@ Make sure the sub-group and its child layers are removed from map before changin
 
 ## License
 [![license](https://img.shields.io/github/license/ghybs/leaflet.featuregroup.subgroup.svg)](LICENSE)
+
 Leaflet.FeatureGroup.SubGroup is distributed under the [BSD 2-clause "Simplified" License](http://choosealicense.com/licenses/bsd-2-clause/), like Leaflet.
