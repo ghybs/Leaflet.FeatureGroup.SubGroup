@@ -13,11 +13,9 @@ for mobile-friendly interactive maps.
 
 GitHub:
 [![releases](https://img.shields.io/github/release/ghybs/leaflet.featuregroup.subgroup.svg)](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases)
-![downloads](https://img.shields.io/github/downloads/ghybs/leaflet.featuregroup.subgroup/total.svg)
 
 npm:
 [![npm](https://img.shields.io/npm/v/leaflet.featuregroup.subgroup.svg)](https://www.npmjs.com/package/leaflet.featuregroup.subgroup)
-![downloads](https://img.shields.io/npm/dt/leaflet.featuregroup.subgroup.svg)
 
 Size: 2 kB minified, < 1 kB gzipped.
 
