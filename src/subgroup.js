@@ -158,7 +158,7 @@ L.FeatureGroup.SubGroup = L.FeatureGroup.extend({
 
         if (this._map && this._layers[id]) {
             // Remove from parent group instead of directly from map.
-            this._parentGroup.removeLayer(id);
+            this._parentGroup.removeLayer(this._layers[id]);
         }
 
         delete this._layers[id];
