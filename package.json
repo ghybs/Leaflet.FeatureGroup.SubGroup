@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "jake build",
+    "version": "npm run build && jake buildDocs && git add README.md",
     "prepublish": "jake"
   },
   "repository": {
