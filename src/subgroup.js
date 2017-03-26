@@ -145,20 +145,23 @@ L.FeatureGroup.SubGroup = L.FeatureGroup.extend({
     },
 
     _removeLayerFromGroup: function (layer) {
+        // If unknown layer, skip.
         if (!this.hasLayer(layer)) {
             return this;
         }
-        if (layer in this._layers) {
-            layer = this._layers[layer];
-        }
 
-                    layer.removeEventParent(this);
-
+        // Retrieve the layer id.
         var id = layer in this._layers ? layer : this.getLayerId(layer);
 
-        if (this._map && this._layers[id]) {
+        // Retrieve the layer from this._layer.
+        layer = this._layers[id];
+
+        // Unregister from events parent.
+        layer.removeEventParent(this);
+
+        if (this._map && layer) {
             // Remove from parent group instead of directly from map.
-            this._parentGroup.removeLayer(this._layers[id]);
+            this._parentGroup.removeLayer(layer);
         }
 
         delete this._layers[id];
