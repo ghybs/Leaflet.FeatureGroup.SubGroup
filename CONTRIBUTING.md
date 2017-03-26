@@ -54,5 +54,7 @@ Normally done by the package owner only.
 4. Edit the release tag on GitHub. Upload the dist files in there, keeping
 their filename intact.
 5. Make sure the links on README are functional (except for unpkg CDN, since
-the new version is not published yet to npm).
+the new version is not published yet to npm). **Do not** make any commit
+between the tag and the publication to npm, otherwise the commit references
+stored in the dist files will mismatch.
 6. Publish to npm registry: `npm publish`
