@@ -1,6 +1,11 @@
 # Leaflet.FeatureGroup.SubGroup Changelog
 
 
+## 1.0.2 (2017-03-26) for Leaflet 1.0+
+
+- Fixed `removeLayer` when parent is a MarkerClusterGroup (by [@darthsteven](https://github.com/darthsteven)) [#12](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/pull/12)
+
+
 ## 1.0.1 (2016-09-23) for Leaflet 1.0
 
 - Fixed UMD wrapper, now side effect only [#8](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/8)
