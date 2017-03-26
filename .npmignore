@@ -1,4 +1,5 @@
-examples/
+debug/
+docs/
 *.map
 build/
 src/
