@@ -69,7 +69,7 @@ It should virtually be compatible with any LayerGroup plugin, not only MarkerClu
 ### Installing the sub-plugin
 
 #### Local copy
-1. Download the "<a href="https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/download/v1.0.1/leaflet.featuregroup.subgroup.js">`leaflet.featuregroup.subgroup.js`</a>" file from the [`v1.0.1` release](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v1.0.1).
+1. Download the "<a href="https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/download/{{TAG_NAME}}/leaflet.featuregroup.subgroup.js">`leaflet.featuregroup.subgroup.js`</a>" file from the [`{{TAG_NAME}}` release](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/{{TAG_NAME}}).
 2. Place the file alongside your page.
 3. Add the `script` tag (see [Quick Guide > HTML](#quick-guide)) to your page after Leaflet script.
 
@@ -78,7 +78,7 @@ You can alternatively use the free [unpkg](https://unpkg.com) CDN service, but k
 
 ```html
 <!-- After Leaflet script -->
-<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.1/dist/leaflet.featuregroup.subgroup.js"></script>
+<script src="https://unpkg.com/leaflet.featuregroup.subgroup@{{VERSION}}/dist/leaflet.featuregroup.subgroup.js"></script>
 ```
 
 

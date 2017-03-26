@@ -145,3 +145,39 @@ exports.build = function (callback, metaData, compsBase32, buildName) {
         }
     });
 };
+
+
+//////////////////////////////////////
+// Docs
+//////////////////////////////////////
+
+function _fillFileTemplate(content, dataMap) {
+    for (var key in dataMap) {
+        //content = content.replace(key, dataMap[key]);
+        content = _replaceAll(content, key, dataMap[key]);
+    }
+
+    return content;
+}
+
+function _replaceAll(target, search, replacement) {
+    return target.split(search).join(replacement);
+}
+
+exports.buildDocs = function (callback, metaData) {
+
+    console.log('Generating docs...');
+
+    var readmeContent = _fillFileTemplate(fs.readFileSync('build/readme.template.md', 'utf8'), {
+            '{{TAG_NAME}}': 'v' + metaData.version,
+            '{{VERSION}}': metaData.version
+        }),
+        readmeFilepath = 'README.md';
+
+    console.log('Writing README');
+    fs.writeFileSync(readmeFilepath, readmeContent);
+
+    console.log('Done');
+
+    callback();
+};

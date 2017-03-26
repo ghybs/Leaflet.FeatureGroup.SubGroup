@@ -35,4 +35,11 @@ task('build', {async: true}, function (compsBase32, buildName, officialRelease) 
     });
 });
 
+desc('Generate docs');
+task('buildDocs', {async: true}, function () {
+    var packageJsonData = require('./package.json');
+
+    build.buildDocs(complete, packageJsonData);
+});
+
 task("default", ["build"]);
