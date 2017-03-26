@@ -51,6 +51,8 @@ Normally done by the package owner only.
 [`major` / `minor` / `patch`]
 `-m "v%s: git commit title and description"`
 3. Push to GitHub.
-4. Edit the release tag on GitHub. Upload the dist files in there, keeping their filename intact.
-5. Make sure the links on README are functional.
+4. Edit the release tag on GitHub. Upload the dist files in there, keeping
+their filename intact.
+5. Make sure the links on README are functional (except for unpkg CDN, since
+the new version is not published yet to npm).
 6. Publish to npm registry: `npm publish`
