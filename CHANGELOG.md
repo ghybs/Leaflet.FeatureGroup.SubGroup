@@ -1,7 +1,7 @@
 # Leaflet.FeatureGroup.SubGroup Changelog
 
 
-## 1.0.1 (2016-04-22) for Leaflet 1.0
+## 1.0.1 (2016-09-23) for Leaflet 1.0
 
 - Fixed UMD wrapper, now side effect only [#8](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/8)
 
