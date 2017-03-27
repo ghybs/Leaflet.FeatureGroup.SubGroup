@@ -26,9 +26,9 @@ Size: 2 kB minified, < 1 kB gzipped.
 
 
 ## Requirements
-*Requires Leaflet 1.0.0*
+*Requires Leaflet ^1.0.0*
 
-*For Leaflet 0.7 use the [v0.1.2 release](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v0.1.2) or the [leaflet-0.7 branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/leaflet-0.7)*
+*For Leaflet ~0.7.7 use the [v0.1.2 release](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases/tag/v0.1.2) or the [leaflet-0.7 branch](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/tree/leaflet-0.7)*
 
 *Optional: [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin*
 
