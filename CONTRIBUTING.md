@@ -46,7 +46,7 @@ the BSD-2-Clause license.
 Normally done by the package owner only.
 
 1. Build, test, commit. The git working directory must be clean.
-2. Update the CHANGELOG.md, using the next version.
+2. Update the CHANGELOG.md, using the next version. Commit it.
 3. Record a new tag version with message:
 [`npm version`](https://docs.npmjs.com/cli/version)
 [`major` / `minor` / `patch`]
