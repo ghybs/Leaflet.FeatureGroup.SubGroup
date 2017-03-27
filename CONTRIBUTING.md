@@ -46,15 +46,17 @@ the BSD-2-Clause license.
 Normally done by the package owner only.
 
 1. Build, test, commit. The git working directory must be clean.
-2. Record a new tag version with message:
+2. Update the CHANGELOG.md, using the next version.
+3. Record a new tag version with message:
 [`npm version`](https://docs.npmjs.com/cli/version)
 [`major` / `minor` / `patch`]
 `-m "v%s: git commit title and description"`
-3. Push to GitHub.
-4. Edit the release tag on GitHub. Upload the dist files in there, keeping
-their filename intact.
-5. Make sure the links on README are functional (except for unpkg CDN, since
+4. Push to GitHub, including the tag.
+5. Edit the release tag on GitHub. Upload the dist files in there, keeping
+their filename intact. Make sure they reference the same commit hash as for the
+newly created tag.
+6. Make sure the links on README are functional (except for unpkg CDN, since
 the new version is not published yet to npm). **Do not** make any commit
 between the tag and the publication to npm, otherwise the commit references
 stored in the dist files will mismatch.
-6. Publish to npm registry: `npm publish`
+7. Publish to npm registry: `npm publish`
