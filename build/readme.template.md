@@ -83,17 +83,18 @@ You can alternatively use the free [unpkg](https://unpkg.com) CDN service, but k
 
 #### npm
 1. Add this package to your project:
-```bash
-$ npm install leaflet.featuregroup.subgroup --save
-```
+   ```bash
+   $ npm install leaflet.featuregroup.subgroup --save
+   ```
+
 2. If you are using a bundling tool, import in your JavaScript.
 It only performs the side effect of attaching to the global `L` namespace,
 so you do not need to store it into a local variable or import a namespace.
-```javascript
-require('leaflet.featuregroup.subgroup');
-// Or with ES6:
-import 'leaflet.featuregroup.subgroup';
-```
+   ```javascript
+   require('leaflet.featuregroup.subgroup');
+   // Or with ES6:
+   import 'leaflet.featuregroup.subgroup';
+   ```
 
 ### Creation
 Simply use the `L.featureGroup.subGroup` factory instead of your regular `L.featureGroup` or `L.layerGroup`:
