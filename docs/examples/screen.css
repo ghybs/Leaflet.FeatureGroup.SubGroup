@@ -30,3 +30,21 @@ code {
     background-color: #76A6FC;
     border-radius: 4px;
 }
+
+.italic {
+    font-style: italic;
+}
+
+.buttonsTable {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+.buttonsTable td, .buttonsTable th {
+    padding: .5em;
+    border: 1px solid grey;
+}
+
+.version-disabled {
+    text-decoration: line-through;
+}

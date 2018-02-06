@@ -4,17 +4,10 @@
 
 	<meta charset="utf-8" />
 	<title>Leaflet.FeatureGroup.SubGroup demo page (Layers Control and MarkerCluster)</title>
-
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link rel="stylesheet" href="screen.css" />
 
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css" />
-	<script src="https://unpkg.com/leaflet.markercluster@1.0.4/dist/leaflet.markercluster-src.js"></script>
-
-	<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2/dist/leaflet.featuregroup.subgroup-src.js"></script>
 	<script src="realworld.388.js"></script>
 
 </head>
@@ -47,59 +40,137 @@
 	The only difference is that markers are added to 4 different <code>subGroup</code>'s which are bound to the MarkerClusterGroup, instead of markers being directly added to the MCG.
 </p>
 
-<script type="application/javascript">
+<table class="buttonsTable">
+	<tr>
+		<th>Leaflet</th>
+		<th>Leaflet.markercluster</th>
+		<th>Leaflet.FeatureGroup.SubGroup</th>
+	</tr>
+	<tr>
+		<td>
+			<!-- https://github.com/ghybs/manage-libs-versions -->
+			<div
+					data-manage-lib="leaflet"
+					data-manage-versions="master, 1.3.1, 1.3.0, 1.2.0, 1.1.0, 1.0.3, 1.0.2, 1.0.1, 1.0.0"
+			></div>
+		</td>
+		<td>
+			<div
+					data-manage-lib="leaflet.markercluster"
+					data-manage-versions="1.3.0, 1.2.0, 1.1.0, 1.0.6, 1.0.5, 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0"
+			></div>
+		</td>
+		<td>
+			<div
+					data-manage-lib="leaflet.featuregroup.subgroup"
+					data-manage-versions="local, 1.0.2, 1.0.1"
+			></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div
+					data-manage-lib="leaflet"
+					data-manage-versions="0.7.7"
+			></div>
+		</td>
+		<td>
+			<div
+					data-manage-lib="leaflet.markercluster"
+					data-manage-versions="0.5.0"
+			></div>
+		</td>
+		<td>
+			<div
+					data-manage-lib="leaflet.featuregroup.subgroup"
+					data-manage-versions="0.1.2"
+			></div>
+		</td>
+	</tr>
+</table>
 
-	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
-		}),
-		latlng = L.latLng(-37.82, 175.24),
-		fullCount = addressPoints.length,
-		quarterCount = Math.round(fullCount / 4);
+<br />
+
+<button id="reload">Reload with the above versions</button>
+
+<br />
+
+<p>Note: local version is available only in local development and if dist files have been built.</p>
 
 
-	var map = L.map('map', {center: latlng, zoom: 13, layers: [tiles]});
+<script src="https://unpkg.com/urijs@^1/src/URI.min.js"></script>
+<script src="https://unpkg.com/load-js-css@0.0.2/index.js"></script>
 
-	var mcg = L.markerClusterGroup(),
-		group1 = L.featureGroup.subGroup(mcg),// use `L.featureGroup.subGroup(parentGroup)` instead of `L.featureGroup()` or `L.layerGroup()`!
-		group2 = L.featureGroup.subGroup(mcg),
-		group3 = L.featureGroup.subGroup(mcg),
-		group4 = L.featureGroup.subGroup(mcg),
-		control = L.control.layers(null, null, { collapsed: false }),
-		i, a, title, marker;
+<script src="https://unpkg.com/manage-libs-versions@0.2.1/manage-libs-versions.js"></script>
+<!--script src="manage-libs-versions.js"></script-->
 
-	mcg.addTo(map);
+<script src="../leaflet-versions.js"></script>
+<script src="../leaflet.markercluster-versions.js"></script>
+<script src="libs-setup.js"></script>
 
-	for (i = 0; i < fullCount; i++) {
-		a = addressPoints[i];
-		title = a[2];
-		marker = L.marker([a[0], a[1]], { title: title });
-		marker.bindPopup(title);
+<script>
 
-		marker.addTo(i < quarterCount ? group1 : i < quarterCount * 2 ? group2 : i < quarterCount * 3 ? group3 : group4);
-	}
+  bundle1.fillPlaceholders();
 
-	control.addOverlay(group1, 'First quarter');
-	control.addOverlay(group2, 'Second quarter');
-	control.addOverlay(group3, 'Third quarter');
-	control.addOverlay(group4, 'Fourth quarter');
-	control.addTo(map);
+  // Check for availability of local version.
+  // It is absent from repository, therefore in online mode.
+  // In development mode, it is available if developer has built the dist file(s).
+  var localVersion = bundle1.getLibVersion('leaflet.featuregroup.subgroup', 'local');
 
-	group1.addTo(map); // Adding to map now adds all child layers into the parent group.
-	group2.addTo(map);
-	group3.addTo(map);
-	group4.addTo(map);
+  if (localVersion) {
+    localVersion.checkAssetsAvailability(true)
+        .then(function () {
+          console.log('LOCAL version found');
+          load();
+        })
+        .catch(function () {
+          var version102 = bundle1.getLibVersion('leaflet.featuregroup.subgroup', '1.0.2');
+
+          if (version102) {
+            version102.defaultVersion = true;
+          }
+
+          load();
+        });
+  } else {
+    load();
+  }
 
 
-	// Set-up buttons.
 
-	document.getElementById("add").addEventListener("click", function () {
-		map.addLayer(mcg);
-	});
+  function load() {
+    // Retrieve the requested versions from browser address bar.
+    var url = window.location.href;
+    // https://github.com/medialize/URI.js
+    var urlParts = URI.parse(url);
+    var queryStringParts = URI.parseQuery(urlParts.query);
+    // https://github.com/ghybs/manage-libs-versions
+    var list = bundle1.getAndSelectVersionsAssetsList(queryStringParts);
 
-	document.getElementById("remove").addEventListener("click", function () {
-		map.removeLayer(mcg);
-	});
+    // Finally load the page script, now that Leaflet, and Leaflet.FeatureGroup.SubGroup are available.
+    list.push({
+      type: 'script',
+      path: './subGroup-markercluster-controlLayers-realworld.388.js'
+    });
+
+    console.log(list);
+
+    // https://github.com/ghybs/load-js-css
+    loadJsCss.list(list, {
+      delayScripts: 500 // Load scripts after stylesheets, delayed by this duration (in ms).
+    });
+  }
+
+
+  ////////////////////////////////////////////////////////
+  document.getElementById('reload').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    var bundleVersions = bundle1.readSelectedVersionsNames();
+    var url = new URI(window.location.href).setQuery(bundleVersions);
+
+    window.location.href = url.toString();
+  });
 
 </script>
 
