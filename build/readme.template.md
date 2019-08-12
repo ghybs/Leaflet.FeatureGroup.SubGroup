@@ -21,6 +21,8 @@ for mobile-friendly interactive maps.
 
 [![GitHub releases](https://img.shields.io/github/release/ghybs/leaflet.featuregroup.subgroup.svg?label=GitHub)](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/releases)
 [![npm](https://img.shields.io/npm/v/leaflet.featuregroup.subgroup.svg)](https://www.npmjs.com/package/leaflet.featuregroup.subgroup)
+[![TypeScript definitions on DefinitelyTyped](https://definitelytyped.org/badges/standard.svg)](https://definitelytyped.org)
+[![types](https://img.shields.io/npm/types/@types/leaflet.featuregroup.subgroup)](https://www.npmjs.com/package/@types/leaflet.featuregroup.subgroup)
 
 Size: 2 kB minified, < 1 kB gzipped.
 
